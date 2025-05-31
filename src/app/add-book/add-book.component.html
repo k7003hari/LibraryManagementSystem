@@ -1,0 +1,41 @@
+<app-navbar></app-navbar>
+<div class="container p-5">
+  <div class="add-book-card">
+    <h3 class="text-center mb-4">Add New Book</h3>
+    <form #addBook="ngForm" (ngSubmit)="validateAdd(addBook)">
+      <div class="mb-3">
+        <label for="title" class="form-label">Book Title</label>
+        <input ngModel name="title" type="text" class="form-control" id="title" placeholder="Enter book title" required />
+      </div>
+
+      <div class="mb-3">
+        <label for="author" class="form-label">Author</label>
+        <input ngModel name="author" type="text" class="form-control" id="author" placeholder="Enter author name" required />
+      </div>
+
+      <div class="mb-3">
+        <label for="genre" class="form-label">Genre</label>
+        <input ngModel name="genre" type="text" class="form-control" id="genre" placeholder="Enter genre" required />
+      </div>
+
+      <div class="mb-3">
+        <label for="isbn" class="form-label">ISBN</label>
+        <input ngModel name="isbn" type="text" class="form-control" id="isbn" placeholder="e.g., 978-3-16-148410-0" required />
+      </div>
+
+      <div class="mb-3">
+        <label for="year" class="form-label">Publication Year</label>
+        <input ngModel name="yearPublished" type="number" class="form-control" id="year" placeholder="e.g., 2024" required />
+      </div>
+
+      <div class="mb-3">
+        <label for="copies" class="form-label">Available Copies</label>
+        <input ngModel name="availableCopies" type="number" class="form-control" id="copies" placeholder="e.g., 2024" required />
+      </div>
+
+      <div class="d-grid">
+        <button type="submit" class="btn btn-custom">Add Book</button>
+      </div>
+    </form>
+  </div>
+</div>

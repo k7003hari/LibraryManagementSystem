@@ -1,0 +1,37 @@
+<app-navbar></app-navbar>
+<div class="container view-books-container">
+    <div class="header-title">View All Books</div>
+   
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover align-middle text-center">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Book Title</th>
+            <th>Author</th>
+            <th>Genre</th>
+            <th>ISBN</th>
+            <th>Year</th>
+            <th>Available Copies</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Dynamic Book Rows -->
+          <tr *ngFor="let book of books; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.genre }}</td>
+            <td>{{ book.isbn }}</td>
+            <td>{{ book.publicationYear }}</td>
+            <td>{{ book.availableCopies }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+   
+    <!-- If no books found -->
+    <div *ngIf="books.length === 0" class="alert alert-info text-center mt-4">
+      No books available in the library.
+    </div>
+  </div>

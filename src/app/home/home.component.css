@@ -1,0 +1,25 @@
+.home-container {
+  position: relative;
+  height: 100vh;
+  background: url('https://th.bing.com/th/id/R.fa64b2da3914de8f1251d94628edf259?rik=ked6DED%2fuwN4SA&riu=http%3a%2f%2fcdn.shopify.com%2fs%2ffiles%2f1%2f2537%2f8806%2fproducts%2fCustom-Mural-Wallpaper-Bookcase-Library-Living-Room-Sofa-Bedroom-Study-Background-Decor-Wall-Painting-3D-Wallpapers_1200x1200.jpg%3fv%3d1571609119&ehk=N1KeQVVr8oboq7HZHGz6IDRgVSmp61LpU7wMLB4YUZs%3d&risl=&pid=ImgRaw&r=0') no-repeat center center;
+  background-size: cover;
+}
+ 
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+}
+ 
+.content {
+  background-color: rgba(0, 0, 0, 0.555);
+  border-radius: 5px;
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  padding: 20px;
+}

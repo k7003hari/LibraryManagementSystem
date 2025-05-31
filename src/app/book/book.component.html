@@ -1,1 +1,53 @@
-<p>book works!</p>
+<app-navbar></app-navbar>
+
+
+<div class="container mt-8 text-center">
+    <h2 class="mb-4 text-primary">
+      📚 Book Module
+    </h2>
+    <p class="text-muted mb-5">Manage all book-related operations from here</p>
+   
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 justify-content-center">
+   
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">View All Books</h5>
+            <p class="card-text">Available books</p>
+            <button class="btn btn-outline-primary w-100" routerLink="/allBook">Go</button>
+          </div>
+        </div>
+      </div>
+   
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Add New Book</h5>
+            <p class="card-text">Add a new book</p>
+            <button class="btn btn-outline-success w-100" routerLink="/addBook">Add</button>
+          </div>
+        </div>
+      </div>
+   
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Search Books</h5>
+            <p class="card-text">Search for a book by title or author</p>
+            <button class="btn btn-outline-info w-100" routerLink="/books/search">Search</button>
+          </div>
+        </div>
+      </div>
+   
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Update / Delete</h5>
+            <p class="card-text">Edit or remove books </p>
+            <button class="btn btn-outline-danger w-100" routerLink="/books/manage">Manage</button>
+          </div>
+        </div>
+      </div>
+   
+    </div>
+  </div>

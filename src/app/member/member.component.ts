@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-member',
-  imports: [],
+  imports: [NavbarComponent],
   templateUrl: './member.component.html',
   styleUrl: './member.component.css'
 })

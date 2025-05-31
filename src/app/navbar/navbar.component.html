@@ -1,9 +1,9 @@
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+<!-- <nav class="navbar navbar-expand-sm bg">
     <div class="container-fluid">
       <ul class="navbar-nav">
         @if(isLoggedIn){
         <li class="nav-item">
-          <a class="nav-link active" routerLink="/home">Home</a>
+          <a class="nav-link active" routerLink="/home">HOME</a>
         </li>}
         @if(isLoggedIn){
           <li class="nav-item">
@@ -33,9 +33,58 @@
         </li>
       }
       @if(!isLoggedIn){
+        <li class="nav-item">
+          <a class="nav-link active" routerLink="/notification">NOTIFICATION</a>
+        </li>
+      }
+      @if(!isLoggedIn){
        <li class="nav-item">
           <a class="nav-link active" (click)="logout()">LOGOUT</a>
         </li>}
       </ul>
     </div>
+  </nav> -->
+
+  <nav class="navbar navbar-expand-sm navbar-scroll fixed-top">
+    <div class="container-fluid">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        @if(isLoggedIn){
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/home">HOME</a>
+        </li>}
+        @if(isLoggedIn){
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/login">LOGIN</a>
+          </li>}
+        @if(isLoggedIn){
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/register">REGISTER</a>
+          </li>}
+        @if(!isLoggedIn){
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/book">BOOK</a>
+        </li>}
+        @if(!isLoggedIn){
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/member">MEMBER</a>
+        </li>}
+        @if(!isLoggedIn){
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/borrow">BORROW'S</a>
+        </li>}
+        @if(!isLoggedIn){
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/fine">FINE'S</a>
+        </li>}
+        @if(!isLoggedIn){
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/notification">NOTIFICATION</a>
+        </li>}
+        @if(!isLoggedIn){
+        <li class="nav-item">
+          <a class="nav-link" (click)="logout()">LOGOUT</a>
+        </li>}
+      </ul>
+    </div>
   </nav>
+  

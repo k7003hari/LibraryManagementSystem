@@ -1,20 +1,23 @@
 import { Component } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { LoginComponent } from '../login/login.component';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { FormsModule, NgForm } from '@angular/forms';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-register',
-  imports: [NavbarComponent,RouterLink],
+  imports: [NavbarComponent,RouterLink,FormsModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
 
-  constructor(private router:Router){
+  constructor(private router:Router, private authService:AuthService){}
 
-  }
-loginr(){
+validateR(form:NgForm) 
+{
+  console.log('User Registeration')
+  this.authService.register(form.value).subscribe(response=>console.log(response))
   this.router.navigate(['/login'])
 }
 }
