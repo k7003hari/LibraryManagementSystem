@@ -16,12 +16,9 @@ constructor(private authService:AuthService, private router:Router){
 }
 validate(form:NgForm)
   {
-    var username:string=form.value.username 
-    var password:string=form.value.password
-    console.log(username)
-
-    const user = new User(username,password)
-    this.authService.authenticate_User(user).subscribe(response => {
+    
+    console.log(form.value)    
+    this.authService.authenticate_User(form.value).subscribe(response => {
       console.log("Response from backend:", response);
       localStorage.setItem("JWT",response)
       alert("Logged In Successfully")

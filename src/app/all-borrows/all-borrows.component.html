@@ -1,0 +1,37 @@
+<app-navbar></app-navbar>
+<div class="container " style="margin-top: 150px;">
+    <div class="card p-4 shadow-sm">
+      <h3 class="mb-3">View Borrowed Books by Member</h3>
+   
+      <div class="mb-3">
+        <label for="memberId" class="form-label">Member ID</label>
+        <input
+          type="number"
+          class="form-control"
+          [(ngModel)]="memberId"
+          name="memberId"
+          required
+          min="1"
+        />
+      </div>
+   
+      <button class="btn btn-primary mb-3" (click)="fetchBorrows()">View Borrows</button>
+   
+      <div *ngIf="message" class="alert alert-info">{{ message }}</div>
+   
+      <div *ngIf="borrowList.length > 0">
+        <div *ngFor="let borrow of borrowList" class="card mb-3 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Transaction ID: {{ borrow.transactionId }}</h5>
+            <p class="card-text">
+              <strong>Book ID:</strong> {{ borrow.bookId }}<br>
+              <strong>Member ID:</strong> {{ borrow.memberId }}<br>
+              <strong>Borrow Date:</strong> {{ borrow.borrowDate }}<br>
+              <strong>Return Date:</strong> {{ borrow.returnDate || 'Not Returned' }}<br>
+              <strong>Status:</strong> {{ borrow.status }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

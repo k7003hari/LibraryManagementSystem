@@ -14,7 +14,8 @@ export class NavbarComponent {
 isLoggedIn=true
 
 constructor(private router:Router,private commonService:CommonService,private authService:AuthService){
- if(authService.getJWT())
+
+  if(authService.getJWT())
  {
 this.isLoggedIn=false
  }

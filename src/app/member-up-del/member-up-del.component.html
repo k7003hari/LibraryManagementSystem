@@ -1,0 +1,30 @@
+<app-navbar></app-navbar>
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Manage Members</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div class="col" *ngFor="let member of members">
+        <div class="card h-100 shadow">
+          <div class="card-body">
+            <img
+            src="https://cdn-icons-png.flaticon.com/512/2288/2288510.png"class="img-fluid rounded "alt="Member Cover"/>
+            <h3 class="text-primary">Member Details</h3>
+         <p>   
+            <strong>Name:</strong> {{ member.name }}<br>
+            <strong>Email:</strong> {{ member.email }}<br> 
+            <strong>Phone:</strong> {{ member.phone }}<br>
+            <strong>Address:</strong> {{ member.address }}<br>
+            <strong>Status:</strong> {{ member.membershipStatus }}
+            </p>
+          </div>
+          <div class="card-footer d-flex justify-content-between">
+            <button class="btn btn-primary" (click)="updateMember(member.memberId)">Update</button>
+            <button class="btn btn-danger" (click)="deleteMember(member.memberId)">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-grid">
+      <button type="submit" class="btn btn-custom" routerLink="/member">Ok</button>
+    </div>
+  </div>
+   

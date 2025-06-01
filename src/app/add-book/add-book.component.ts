@@ -3,7 +3,6 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { Router, RouterLink } from '@angular/router';
 import { BookService } from '../book.service';
 import { FormsModule, NgForm } from '@angular/forms';
-import { BookComponent } from '../book/book.component';
 
 @Component({
   selector: 'addbook',

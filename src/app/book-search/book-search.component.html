@@ -1,0 +1,57 @@
+<app-navbar></app-navbar>
+<!-- book-search.component.html -->
+<div class="container book-search-container">
+    <div class="header-title">Search Books</div>
+   
+    <div class="row mb-4">
+      <div class="col-md-4">
+        <select class="form-select" [(ngModel)]="searchType">
+          <option value="title">Title</option>
+          <option value="author">Author</option>
+          <option value="genre">Genre</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <input type="text" class="form-control" placeholder="Enter value to search" [(ngModel)]="searchValue">
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-primary w-100" (click)="searchBooks()">Search</button>
+      </div>
+    </div>
+   
+    <div class="table-responsive" *ngIf="books.length > 0">
+      <table class="table table-bordered table-hover align-middle text-center">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Book Title</th>
+            <th>Author</th>
+            <th>Genre</th>
+            <th>ISBN</th>
+            <th>Year</th>
+            <th>Available</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let book of books; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.genre }}</td>
+            <td>{{ book.isbn }}</td>
+            <td>{{ book.yearPublished }}</td>
+            <td>{{ book.availableCopies }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+   
+    <div *ngIf="books.length === 0" class="alert alert-info text-center mt-4">
+      No matching books found.
+    </div>
+    <div class="d-grid">
+      <button type="submit" class="btn btn-custom" routerLink="/book">Ok</button>
+    </div>
+  </div>
+   
+  

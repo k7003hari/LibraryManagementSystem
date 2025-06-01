@@ -5,6 +5,7 @@ body {
   .view-books-container {
     max-width: 1000px;
     margin: 40px auto;
+    margin-top: 200px;
     padding: 20px;
     background-color: white;
     border-radius: 16px;
@@ -25,4 +26,11 @@ body {
     font-weight: 600;
     margin-bottom: 25px;
     text-align: center;
+  }
+   .btn-custom {
+    background-color: #0d6efd;
+    margin-left: 450px;
+    margin-right: 450px;
+    color: white;
+    font-weight: 500;
   }

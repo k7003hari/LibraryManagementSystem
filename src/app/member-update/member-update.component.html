@@ -1,0 +1,13 @@
+<app-navbar></app-navbar>
+<div class="container mt-7">
+    <h2 class="text-center text-primary mb-4">Update Member Details</h2>
+    <form (ngSubmit)="updateMember()" #form="ngForm" class="form-group">
+      <input type="text" class="form-control mb-3" name="name" [(ngModel)]="member.name" placeholder="Name" required>
+      <input type="email?" class="form-control mb-3?" name="email" [(ngModel)]="member.email" placeholder="Email" required>
+      <input type="text" class="form-control mb-3" name="phone" [(ngModel)]="member.phone" placeholder="Phone" required>
+      <input type="text" class="form-control mb-3" name="address" [(ngModel)]="member.address" placeholder="Address" required>
+      <input type="text" class="form-control mb-3" name="membershipStatus" [(ngModel)]="member.membershipStatus" placeholder="Membership Status" required>
+      <button class="btn btn-success w-100" type="submit" [disabled]="form.invalid">Update Member</button>
+    </form>
+  </div>
+   

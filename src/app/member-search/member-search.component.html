@@ -1,0 +1,31 @@
+<app-navbar></app-navbar>
+
+<div class="container mt-5 "  style="margin-top: 150px;">
+    <h2 class="text-center text-primary mb-4" style="margin-top: 150px;">Search Member by ID</h2>
+   
+    <div class="card p-4 shadow-sm">
+      <div class="form-group">
+        <input
+          type="number"
+          [(ngModel)]="memberId"
+          class="form-control mb-3"
+          placeholder="Enter Member ID"
+        />
+        <button class="btn btn-primary w-100" (click)="searchMember()">Search</button>
+      </div>
+    </div>
+   
+    <div *ngIf="member" class="card mt-4 shadow-sm border-success">
+      <div class="card-body"> 
+        
+        <p class="card-text"><strong>Name:</strong> {{ member.name }}</p>
+        <p class="card-text"><strong>Email:</strong> {{ member.email }}</p>        
+        <p class="card-text"><strong>Phone:</strong> {{ member.phone }}</p>
+        <p class="card-text"><strong>Address:</strong> {{ member.address }}</p>
+        <p class="card-text"><strong>Status:</strong> {{ member.membershipStatus }}</p>
+      </div>
+      <div class="d-grid">
+        <button type="submit" class="btn btn-custom" routerLink="/member">Ok</button>
+      </div>
+    </div>
+  </div>
