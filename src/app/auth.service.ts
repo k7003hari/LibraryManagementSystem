@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -30,7 +31,27 @@ export class AuthService {
   {
     localStorage.removeItem("JWT")
   }
+ 
+  getUserRole(): string {
+    const token = this.getJWT();
+    if (!token) return '';
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    return payload.roles || '';
+  }
+   
+  getUserId(): number {
+    const id = localStorage.getItem('memberId');
+    return id ? +id : 0;
+  }
+  
+   
+
 }
+interface JwtPayload {
+  roles?: string;
+  
+}
+
 
 export class User {
   username: string

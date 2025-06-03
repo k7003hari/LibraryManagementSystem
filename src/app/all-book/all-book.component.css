@@ -34,3 +34,78 @@ body {
     color: white;
     font-weight: 500;
   }
+  /* Container adjustments */
+.container {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  margin-top: 100px;
+}
+ 
+/* Book card styling */
+.card {
+  border-radius: 15px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  background-color: #fefefe;
+}
+ 
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+ 
+/* Image styling */
+.card img {
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin: 0 auto;
+  width: 90%;
+}
+ 
+/* Book title */
+.card h3 {
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: #007bff;
+  margin-bottom: 10px;
+}
+ 
+/* Info text */
+.card p {
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+  color: #333;
+}
+ 
+/* Button spacing */
+.card .btn {
+  font-size: 0.9rem;
+  padding: 6px 12px;
+  border-radius: 8px;
+  transition: background-color 0.2s, color 0.2s;
+}
+ 
+/* Success and danger hover effects */
+.btn-outline-warning:hover {
+  background-color: #ffc107;
+  color: #fff;
+}
+ 
+.btn-outline-danger:hover {
+  background-color: #dc3545;
+  color: #fff;
+}
+ 
+/* Info message if no books */
+.alert-info {
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 10px;
+}
+.btn-custom {
+  background-color: #0d6efd;
+  margin-left: 570px;
+  margin-right: 570px;
+  color: white;
+  font-weight: 500;
+}

@@ -19,6 +19,9 @@ import { MemberSearchComponent } from './member-search/member-search.component';
 import { BorrowBookComponent } from './borrow-book/borrow-book.component';
 import { ReturnBookComponent } from './return-book/return-book.component';
 import { ViewBorrowsComponent } from './all-borrows/all-borrows.component';
+import { FineCalComponent } from './fine-cal/fine-cal.component';
+import { FinePayComponent } from './fine-pay/fine-pay.component';
+import { FineViewComponent } from './fine-view/fine-view.component';
 
 export const routes: Routes = [
     { path: "", component: HomeComponent },
@@ -59,9 +62,11 @@ export const routes: Routes = [
 
     //fines
 
-    // { path: "borrowBook", component: BorrowBookComponent},
-    // { path: "returnBook", component: ReturnBookComponent},
-    // { path: "allBorrows", component: AllBorrowsComponent },
+    { path: "fineCal", component: FineCalComponent},
+    { path: "finePay", component: FinePayComponent},
+    { path: "fineView", component: FineViewComponent },
+
+    //notify
 
     
 ];

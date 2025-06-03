@@ -95,17 +95,8 @@
    
           <div class="form-floating mb-4">
             <input
-              type="number"
-              min="0"
-              class="form-control"
-              id="availableCopies"
-              name="availableCopies"
-              placeholder="Available Copies"
-              [(ngModel)]="book.availableCopies"
-              required
-              #availableCopies="ngModel"
-            />
-            <label for="availableCopies">Available Copies</label>
+              type="number" min="0" class="form-control"  id="availableCopies" name="availableCopies"   placeholder="Available Copies" [(ngModel)]="book.availableCopies"  required #availableCopies="ngModel" />
+               <label for="availableCopies">Available Copies</label>
             <div *ngIf="availableCopies.invalid && (availableCopies.dirty || availableCopies.touched)" class="text-danger small">
               Available Copies is required and must be valid.
             </div>

@@ -16,7 +16,7 @@ export class BookUpdateComponent implements OnInit {
   bookId!: string;
   book: AddBook = new AddBook('', '', '', '', '', '');
  
-  constructor(
+  constructor( 
     private route: ActivatedRoute,
     private bookService: BookService,
     private router: Router

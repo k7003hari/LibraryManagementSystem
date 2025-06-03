@@ -1,0 +1,19 @@
+<app-navbar></app-navbar>
+
+<div class="container " style="margin-top: 150px;">
+  <div class="card p-4 shadow">
+    <h3 class="mb-3">All Fines (Admin View)</h3>
+ 
+    <div *ngIf="message" class="alert alert-warning">{{ message }}</div>
+ 
+    <div *ngFor="let fine of fineList" class="card mb-3 p-3 shadow-sm">
+      <h5>Fine ID: {{ fine.fineId }}</h5>
+      <p><strong>ID: </strong>{{ fine.memberId.memberId }}</p>
+      <p><strong>Member:</strong> {{ fine.memberId.name }} </p>
+      <p><strong>Email:</strong> {{ fine.memberId.email }}</p>
+      <p><strong>Amount:</strong> ₹{{ fine.amount }}</p>
+      <p><strong>Status:</strong> {{ fine.status }}</p>
+      <p><strong>Transaction Date:</strong> {{ fine.transactionDate }}</p>
+    </div>
+  </div>
+</div>

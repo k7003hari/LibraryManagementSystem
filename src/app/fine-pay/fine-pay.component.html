@@ -1,0 +1,23 @@
+<app-navbar></app-navbar>
+<div class="container " style="margin-top: 150px;">
+  <div class="card p-4 shadow">
+    <h3 class="mb-3">Pay Fine</h3>
+ 
+    <div class="mb-3">
+      <label class="form-label">Member ID</label>
+      <input type="number" class="form-control" [(ngModel)]="memberId" required />
+    </div>
+ 
+    <div class="mb-3">
+      <label class="form-label">Fine ID</label>
+      <input type="number" class="form-control" [(ngModel)]="fineId" required />  
+    </div>
+ 
+    <button class="btn btn-success" (click)="payFine()">Pay Fine</button>
+ 
+    <div *ngIf="message" class="alert alert-info mt-3">
+      {{ message }}
+    </div>
+  </div>
+</div>
+ 
