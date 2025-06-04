@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import {jwtDecode }from 'jwt-decode';
+
 
 
 @Injectable({
@@ -25,32 +27,18 @@ export class AuthService {
 
   getJWT():string
   {
+    
     return localStorage.getItem("JWT")
   }
   removeToken()
   {
     localStorage.removeItem("JWT")
   }
- 
-  getUserRole(): string {
-    const token = this.getJWT();
-    if (!token) return '';
-    const payload = JSON.parse(atob(token.split('.')[1]));
-    return payload.roles || '';
-  }
-   
-  getUserId(): number {
-    const id = localStorage.getItem('memberId');
-    return id ? +id : 0;
-  }
-  
+      
    
 
 }
-interface JwtPayload {
-  roles?: string;
-  
-}
+
 
 
 export class User {

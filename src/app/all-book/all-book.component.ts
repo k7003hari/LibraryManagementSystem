@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
-import { BookService, AllBook } from '../book.service';
+import { AllBook, BookService, } from '../book.service';
  
 @Component({
   selector: 'app-all-book',
@@ -26,5 +26,6 @@ export class AllBookComponent {
       error: err => this.error = err.message
     });
   }
+  
 }
  
