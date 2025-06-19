@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BookComponent } from './book.component';
+import { RazorpayComponent } from './razorpay.component';
 
-describe('BookComponent', () => {
-  let component: BookComponent;
-  let fixture: ComponentFixture<BookComponent>;
+describe('RazorpayComponent', () => {
+  let component: RazorpayComponent;
+  let fixture: ComponentFixture<RazorpayComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BookComponent]
+      imports: [RazorpayComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(BookComponent);
+    fixture = TestBed.createComponent(RazorpayComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

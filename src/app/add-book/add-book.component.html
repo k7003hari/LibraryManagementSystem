@@ -1,41 +1,89 @@
 <app-navbar></app-navbar>
-<div class="container p-5">
-  <div class="add-book-card">
-    <h3 class="text-center mb-10">Add New Book</h3>
-    <form #addBook="ngForm" (ngSubmit)="validateAdd(addBook)">
-      <div class="mb-3">
-        <label for="title" class="form-label">Book Title</label>
-        <input ngModel name="title" type="text" class="form-control" id="title" placeholder="Enter book title" required />
-      </div>
 
-      <div class="mb-3">
-        <label for="author" class="form-label">Author</label>
-        <input ngModel name="author" type="text" class="form-control" id="author" placeholder="Enter author name" required />
+<!-- ✅ Toast Notification -->
+<div *ngIf="toastMessage" class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1055;">
+  <div class="toast show align-items-center text-white bg-success border-0" role="alert">
+    <div class="d-flex">
+      <div class="toast-body">
+        {{ toastMessage }}
       </div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" (click)="toastMessage = null"></button>
+    </div>
+  </div>
+</div>
 
-      <div class="mb-3">
-        <label for="genre" class="form-label">Genre</label>
-        <input ngModel name="genre" type="text" class="form-control" id="genre" placeholder="Enter genre" required />
-      </div>
+<div class="container" style="max-width: 500px; margin-top: 150px;">
+  <div class="card shadow-sm">
+    <div class="card-header bg-primary text-white text-center">
+      <h3 class="mb-0">Add New Book</h3>
+    </div>
+    <div class="card-body">
+      <form #addBook="ngForm" (ngSubmit)="validateAdd(addBook)" novalidate>
 
-      <div class="mb-3">
-        <label for="isbn" class="form-label">ISBN</label>
-        <input ngModel name="isbn" type="text" class="form-control" id="isbn" placeholder="e.g., 978-3-16-148410-0" required />
-      </div>
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="title" name="title" placeholder="Title"
+            ngModel required minlength="3" #title="ngModel" />
+          <label for="title">Title</label>
+          <div *ngIf="title.invalid && (title.dirty || title.touched)" class="text-danger small">
+            <div *ngIf="title.errors?.['required']">Title is required.</div>
+            <div *ngIf="title.errors?.['minlength']">Minimum 3 characters required.</div>
+          </div>
+        </div>
 
-      <div class="mb-3">
-        <label for="year" class="form-label">Publication Year</label>
-        <input ngModel name="yearPublished" type="number" class="form-control" id="year" placeholder="e.g., 2024" required />
-      </div>
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="author" name="author" placeholder="Author"
+            ngModel required minlength="3" #author="ngModel" />
+          <label for="author">Author</label>
+          <div *ngIf="author.invalid && (author.dirty || author.touched)" class="text-danger small">
+            <div *ngIf="author.errors?.['required']">Author is required.</div>
+            <div *ngIf="author.errors?.['minlength']">Minimum 3 characters required.</div>
+          </div>
+        </div>
 
-      <div class="mb-3">
-        <label for="copies" class="form-label">Available Copies</label>
-        <input ngModel name="availableCopies" type="number" class="form-control" id="copies" placeholder="e.g., 2024" required />
-      </div>
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="genre" name="genre" placeholder="Genre"
+            ngModel required #genre="ngModel" />
+          <label for="genre">Genre</label>
+          <div *ngIf="genre.invalid && (genre.dirty || genre.touched)" class="text-danger small">
+            Genre is required.
+          </div>
+        </div>
 
-      <div class="d-grid">
-        <button type="submit" class="btn btn-custom">Add Book</button>
-      </div>
-    </form>
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="isbn" name="isbn" placeholder="ISBN"
+            ngModel required pattern="^[0-9\-]{10,13}$" #isbn="ngModel" />
+          <label for="isbn">ISBN</label>
+          <div *ngIf="isbn.invalid && (isbn.dirty || isbn.touched)" class="text-danger small">
+            <div *ngIf="isbn.errors?.['required']">ISBN is required.</div>
+            <div *ngIf="isbn.errors?.['pattern']">Enter a valid ISBN format (10–13 digits).</div>
+          </div>
+        </div>
+
+        <div class="form-floating mb-3">
+          <input type="number" class="form-control" id="yearPublished" name="yearPublished"
+            placeholder="Year Published" ngModel required min="1900" max="2099" #yearPublished="ngModel" />
+          <label for="yearPublished">Year Published</label>
+          <div *ngIf="yearPublished.invalid && (yearPublished.dirty || yearPublished.touched)" class="text-danger small">
+            <div *ngIf="yearPublished.errors?.['required']">Year is required.</div>
+            <div *ngIf="yearPublished.errors?.['min'] || yearPublished.errors?.['max']">Enter a valid year (1900–2099).</div>
+          </div>
+        </div>
+
+        <div class="form-floating mb-4">
+          <input type="number" class="form-control" id="availableCopies" name="availableCopies"
+            placeholder="Available Copies" ngModel required min="0" #availableCopies="ngModel" />
+          <label for="availableCopies">Available Copies</label>
+          <div *ngIf="availableCopies.invalid && (availableCopies.dirty || availableCopies.touched)" class="text-danger small">
+            <div *ngIf="availableCopies.errors?.['required']">Available copies is required.</div>
+            <div *ngIf="availableCopies.errors?.['min']">Cannot be negative.</div>
+          </div>
+        </div>
+
+        <button class="btn btn-success w-100 fw-bold" type="submit" [disabled]="addBook.invalid">
+          Add Book
+        </button>
+      </form>
+      
+    </div>
   </div>
 </div>

@@ -1,67 +1,101 @@
 <app-navbar></app-navbar>
+
 <section class="vh-100" style="background-color: #eee;">
-    <div class="container h-100">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-lg-12 col-xl-11">
-          <div class="card text-black" style="border-radius: 25px;">
-            <div class="card-body p-md-5">
-              <div class="row justify-content-center">
-                <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
-  
-                  <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
-  
-                  <form #RegisterForm="ngForm" class="mx-1 mx-md-4" (ngSubmit)="validateR(RegisterForm)">
-  
-                    <div class="d-flex flex-row align-items-center mb-4">
-                      <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                      <div data-mdb-input-init class="form-outline flex-fill mb-0">
-                        <input ngModel name="name" type="text" id="form3Example1c" class="form-control" />
-                        <label class="form-label" for="form3Example1c">Your Name</label>
-                      </div>
+  <div class="container h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-12 col-xl-11">
+        <div class="card text-black" style="border-radius: 25px;">
+          <div class="card-body p-md-5">
+            <div class="row justify-content-center">
+              <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+
+                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Register</p>
+
+                <form #RegisterForm="ngForm" (ngSubmit)="validateR(RegisterForm)" class="mx-1 mx-md-4" novalidate>
+
+                  <!-- Full Name -->
+                  <div class="form-outline mb-4">
+                    <input ngModel name="name" id="name" type="text" class="form-control form-control-lg"
+                      placeholder="Enter full name" required minlength="3" #name="ngModel" />
+                    <label class="form-label" for="name">Full Name</label>
+                    <div *ngIf="name.invalid && name.touched" class="text-danger mt-1">
+                      <small *ngIf="name.errors?.['required']">Name is required.</small>
+                      <small *ngIf="name.errors?.['minlength']">Minimum 3 characters required.</small>
                     </div>
-  
-                    <div class="d-flex flex-row align-items-center mb-4">
-                      <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
-                      <div data-mdb-input-init class="form-outline flex-fill mb-0">
-                        <input ngModel name="email" type="email" id="form3Example3c" class="form-control" />
-                        <label class="form-label" for="form3Example3c">Your Email</label>
-                      </div>
+                  </div>
+
+                  <!-- Email -->
+                  <div class="form-outline mb-4">
+                    <input ngModel name="email" id="email" type="email" class="form-control form-control-lg"
+                      placeholder="Enter email" required email #email="ngModel" />
+                    <label class="form-label" for="email">Email</label>
+                    <div *ngIf="email.invalid && email.touched" class="text-danger mt-1">
+                      <small *ngIf="email.errors?.['required']">Email is required.</small>
+                      <small *ngIf="email.errors?.['email']">Enter a valid email.</small>
                     </div>
-  
-                    <div class="d-flex flex-row align-items-center mb-4">
-                      <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
-                      <div data-mdb-input-init class="form-outline flex-fill mb-0">
-                        <input ngModel name="password" type="password" id="form3Example4c" class="form-control" />
-                        <label class="form-label" for="form3Example4c">Password</label>
-                      </div>
+                  </div>
+
+                  <!-- Password -->
+                  <div class="form-outline mb-4">
+                    <input ngModel name="password" id="password" type="password" class="form-control form-control-lg"
+                      placeholder="Enter password" required minlength="4" #password="ngModel" />
+                    <label class="form-label" for="password">Password</label>
+                    <div *ngIf="password.invalid && password.touched" class="text-danger mt-1">
+                      <small *ngIf="password.errors?.['required']">Password is required.</small>
+                      <small *ngIf="password.errors?.['minlength']">Minimum 4 characters required.</small>
                     </div>
-  
-                    <div class="d-flex flex-row align-items-center mb-4">
-                      <i class="fas fa-circle-user fa-lg me-2 fa-fw"></i>
-                      
-                      <div data-mdb-input-init class="form-outline flex-fill mb-0">
-                        <input ngModel name="roles" type="text" id="role" class="form-control" />
-                        <label class="form-label" for="role">Role</label>
-                      </div>
+                  </div>
+
+                  <!-- Role (Radio Buttons) -->
+                  <div class="mb-4">
+                    <label class="form-label d-block mb-2">Select Role</label>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="roles" id="roleMember" [value]="'member'"
+                        ngModel required />
+                      <label class="form-check-label" for="roleMember">Member</label>
                     </div>
-  
-                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                      <button  type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg" >Register</button>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="roles" id="roleAdmin" [value]="'admin'" ngModel
+                        required />
+                      <label class="form-check-label" for="roleAdmin">Admin</label>
                     </div>
-  
-                  </form>
-  
-                </div>
-                <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
-  
-                  <img src="https://img.freepik.com/premium-vector/library-public-reading-room-with-bookcase-bookshelves-wooden-desks-chairs-computers_176411-1523.jpg?w=900"
-                    class="img-fluid" alt="Sample image">
-  
-                </div>
+                  </div>
+
+                  <!-- Submit -->
+                  <div class="d-flex justify-content-center mb-3">
+                    <button type="submit" class="btn btn-primary btn-lg px-5" [disabled]="RegisterForm.invalid">
+                      Register
+                    </button>
+                  </div>
+
+                  <!-- Login Redirect -->
+                  <p class="text-center mt-3 small">Already have an account?
+                    <a routerLink="/login" class="text-primary fw-bold">Login here</a>
+                  </p>
+
+                </form>
+
+              </div>
+              <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+                <img
+                  src="https://img.freepik.com/premium-vector/library-public-reading-room-with-bookcase-bookshelves-wooden-desks-chairs-computers_176411-1523.jpg?w=900"
+                  class="img-fluid" alt="Library Illustration">
               </div>
             </div>
           </div>
         </div>
       </div>
+      <!-- ✅ Toast Notification -->
+      <div *ngIf="toastMessage" class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1055;">
+        <div class="toast show align-items-center text-white" [ngClass]="isError ? 'bg-danger' : 'bg-success'"
+          role="alert">
+          <div class="d-flex">
+            <div class="toast-body">
+              {{ toastMessage }}
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" aria-label="Close"
+              (click)="toastMessage=''"></button>
+          </div>
+        </div>
+      </div>
     </div>
-  </section>

@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink, Router } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { HttpClient } from '@angular/common/http';
  
 @Component({
   selector: 'app-member-add',  
@@ -20,30 +21,31 @@ export class MemberAddComponent {
     membershipStatus: ''
   };
  
-  constructor(private memberService: MemberService,private route: ActivatedRoute, private router: Router,) {}
+  toastMessage: string = '';
+ 
+  constructor(private http: HttpClient) {}
  
   addMember() {
-    this.memberService.addMember(this.member).subscribe({
-      next: (res) => {
-        alert('Member added successfully!');
-        console.log('Add Member Response:', res);
-        this.clearForm();
+    const url = 'http://localhost:9090/members/regMember';
+    this.http.post(url, this.member).subscribe({
+      next: (response) => {
+        console.log('✅ Member added:', response);
+        this.toastMessage = '✅ Member registered successfully!';
+        setTimeout(() => this.toastMessage = '', 3000);
+        this.member = {
+          name: '',
+          email: '',
+          phone: '',
+          address: '',
+          membershipStatus: ''
+        };
       },
-      error: (err) => {
-        alert('Failed to add member!');
-        console.error('Add Member Error:', err);
+      error: (error) => {
+        console.error('❌ Error adding member:', error);
+        this.toastMessage = '❌ Failed to register member. Please try again.';
+        setTimeout(() => this.toastMessage = '', 3000);
       }
     });
-    this.router.navigate(['/member'])
-  }
- 
-  clearForm() {
-    this.member = {
-      name: '',
-      email: '',
-      phone: '',
-      address: '',
-      membershipStatus: ''
-    };
   }
 }
+ 

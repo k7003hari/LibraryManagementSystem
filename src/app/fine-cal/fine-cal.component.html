@@ -1,31 +1,40 @@
 <app-navbar></app-navbar>
-<div class="container " style="margin-top: 150px;">
-  <div class="card p-4 shadow-sm">
-    <h3 class="mb-4">Calculate Fine</h3>
- 
-    <div class="mb-3">
-      <label for="memberId" class="form-label">Enter Member ID</label>
-      <input type="number" class="form-control" id="memberId"[(ngModel)]="memberId" placeholder="e.g. 3"  min="1" required />
-    </div>
- 
-    <button class="btn btn-primary mb-3" (click)="calculateFine()">Calculate</button>
- 
-    <div *ngIf="message" class="alert alert-success mt-2">{{ message }}</div>
-    <div *ngIf="error" class="alert alert-danger mt-2">{{ error }}</div>
- 
-    <div *ngIf="fineDetails" class="card mt-3 p-3 bg-light border">
-      <h5>Fine Details</h5>
-      <p><strong>Fine ID:</strong> {{ fineDetails.fineId }}</p>
-      <p><strong>Status:</strong> {{ fineDetails.status }}</p>
-      <p><strong>Amount:</strong> ₹{{ fineDetails.amount }}</p>
-      <p><strong>Transaction Date:</strong> {{ fineDetails.transactionDate }}</p>
- 
-      <h6 class="mt-3">Member Details</h6>
-      <p><strong>Name:</strong> {{ fineDetails.memberId.name }}</p>
-      <p><strong>Email:</strong> {{ fineDetails.memberId.email }}</p>
-      <p><strong>Phone:</strong> {{ fineDetails.memberId.phone }}</p>
-      <p><strong>Address:</strong> {{ fineDetails.memberId.address }}</p>
-      <p><strong>Status:</strong> {{ fineDetails.memberId.membershipStatus }}</p>
+
+<div class="container" style="margin-top: 130px; max-width: 700px;">
+  <div class="card shadow-lg p-4">
+    <h3 class="mb-4 text-primary text-center">Calculate Fine</h3>
+
+    <form (ngSubmit)="calculateFine()">
+      <div class="mb-3">
+        <label for="memberId" class="form-label">Enter Member ID</label>
+        <input type="number" class="form-control" [(ngModel)]="memberId" name="memberId" id="memberId" placeholder="e.g. 3" required />
+      </div>
+
+      <div class="d-grid">
+        <button class="btn btn-primary mb-2" type="submit">Calculate</button>
+      </div>
+    </form>
+
+    <div *ngIf="message" class="alert alert-success mt-2 text-center">{{ message }}</div>
+    <div *ngIf="error" class="alert alert-danger mt-2 text-center">{{ error }}</div>
+
+    <div *ngIf="fineDetails" class="card mt-4 p-4 bg-light border border-primary rounded-3">
+      <h5 class="mb-3 text-primary">Fine Details</h5>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><strong>Fine ID:</strong> {{ fineDetails.fineId }}</li>
+        <li class="list-group-item"><strong>Status:</strong> {{ fineDetails.status }}</li>
+        <li class="list-group-item"><strong>Amount:</strong> ₹{{ fineDetails.amount }}</li>
+        <li class="list-group-item"><strong>Transaction Date:</strong> {{ fineDetails.transactionDate }}</li>
+      </ul>
+
+      <h6 class="mt-4 text-secondary">Member Details</h6>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><strong>Name:</strong> {{ fineDetails.memberId.name }}</li>
+        <li class="list-group-item"><strong>Email:</strong> {{ fineDetails.memberId.email }}</li>
+        <li class="list-group-item"><strong>Phone:</strong> {{ fineDetails.memberId.phone }}</li>
+        <li class="list-group-item"><strong>Address:</strong> {{ fineDetails.memberId.address }}</li>
+        <li class="list-group-item"><strong>Status:</strong> {{ fineDetails.memberId.membershipStatus }}</li>
+      </ul>
     </div>
   </div>
 </div>

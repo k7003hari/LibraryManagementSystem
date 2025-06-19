@@ -1,30 +1,98 @@
 <app-navbar></app-navbar>
-<div class="container mt-5">
-    <h2 class="text-center mb-4">Manage Members</h2>
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-      <div class="col" *ngFor="let member of members">
-        <div class="card h-100 shadow">
-          <div class="card-body">
-            <img
-            src="https://cdn-icons-png.flaticon.com/512/2288/2288510.png"class="img-fluid rounded "alt="Member Cover"/>
-            <h3 class="text-primary">Member Details</h3>
-         <p>   
-            <strong>Name:</strong> {{ member.name }}<br>
-            <strong>Email:</strong> {{ member.email }}<br> 
-            <strong>Phone:</strong> {{ member.phone }}<br>
-            <strong>Address:</strong> {{ member.address }}<br>
-            <strong>Status:</strong> {{ member.membershipStatus }}
-            </p>
-          </div>
-          <div class="card-footer d-flex justify-content-between">
-            <button class="btn btn-primary" (click)="updateMember(member.memberId)">Update</button>
-            <button class="btn btn-danger" (click)="deleteMember(member.memberId)">Delete</button>
-          </div>
+
+<div class="container" style="margin-top: 100px;">
+  <div class="text-center mt-3 mb-4">
+    <div *ngIf="userRole === 'member'" class="alert alert-info">
+      You are logged in as: <strong>{{ members[0]?.email }}</strong>
+    </div>
+    <div *ngIf="userRole === 'admin'" class="alert alert-primary">
+      Admin Dashboard - Manage Members
+    </div>
+    <h2 class="text-primary">👥 Member Module</h2>
+    <p class="text-muted mb-4">Manage all member-related operations from here</p>
+
+    <!--➕ Add Member button for admin -->
+    <div *ngIf="userRole === 'admin'" class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex align-items-stretch mb-4">
+      <div class="card shadow text-center w-100" routerLink="/addMember" style="cursor: pointer;">
+        <div class="card-body d-flex flex-column justify-content-center align-items-center">
+          <i class="bi bi-plus-circle-fill display-4 text-success mb-3"></i>
+          <h5 class="text-success fw-semibold">Register New Member</h5>
+          <p class="text-muted small">Click to add a Member</p>
         </div>
       </div>
     </div>
-    <div class="d-grid mt-5">
-      <button type="submit" class="btn btn-custom" routerLink="/member">Ok</button>
-    </div>
   </div>
-   
+
+  <!-- Member Cards -->
+  <div class="row">
+    <ng-container *ngFor="let member of members">
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex align-items-stretch mb-4">
+        <div class="card shadow text-center w-100">
+          <img src="https://cdn-icons-png.flaticon.com/512/2288/2288510.png" class="img-fluid p-3 mx-auto"
+            style="height: 180px; object-fit: contain;" />
+          <div class="card-body text-start">
+            <h5 class="text-primary text-center">Member Details</h5>
+            <p><strong>Name:</strong> {{ member.name }}</p>
+            <p><strong>Email:</strong> {{ member.email }}</p>
+            <p><strong>Phone:</strong> {{ member.phone }}</p>
+            <p><strong>Address:</strong> {{ member.address }}</p>
+            <p><strong>Status:</strong> {{ member.membershipStatus }}</p>
+
+            <!-- Fine Info for Member -->
+            <div *ngIf="userRole === 'member'" class="border border-info p-3 rounded mt-3">
+              <h6 class="text-info text-center mb-2">💰 Fine Info</h6>
+
+              <!-- ✅ Show Fine Details -->
+              <ng-container *ngIf="fineDetails">
+                <p><strong>Amount:</strong> {{ fineDetails.amount }}</p>
+                <p><strong>Status:</strong>
+                  <span class="badge" style="color:red" [ngClass]="{
+          'bg-success': fineDetails.status === 'PAID',
+          'bg-danger': fineDetails.status === 'PENDING'
+        }">
+                    {{ fineDetails.status }}
+                  </span>
+                </p>
+                <p><strong>Date:</strong> {{ fineDetails.
+                  transactionDate }}</p>
+
+              </ng-container>
+              <p style="color:red" *ngIf="totalFines>0"><strong>TOTAL DUE:</strong> {{ totalFines}}</p>
+
+
+              <!-- ✅ Show Message Always -->
+              <div *ngIf="message" class="alert alert-success text-center mt-2">{{ message }}</div>
+              <div *ngIf="error" class="alert alert-danger text-center mt-2">{{ error }}</div>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div class="card-footer d-flex flex-wrap justify-content-center gap-2 p-3">
+            <!-- Admin Actions -->
+            <button *ngIf="userRole === 'admin'" class="btn btn-outline-warning"
+              (click)="updateMember(member.memberId)">
+              ✏️ Update
+            </button>
+            <button *ngIf="userRole === 'admin'" class="btn btn-outline-danger" (click)="deleteMember(member.memberId)">
+              🗑️ Delete
+            </button>
+
+            <!-- Member Actions -->
+            <button *ngIf="userRole === 'member' && totalFines==0"  class="btn btn-outline-success" (click)="calculateFine()">
+              💰 Check Fine
+            </button>
+            <button *ngIf="userRole === 'member' && totalFines>0 " (click)="openRazorpayUI()"
+              class="btn btn-outline-primary">
+              🧾 Pay Fine
+            </button>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+  <!-- No Members Message -->
+  <div *ngIf="members.length === 0" class="alert alert-info text-center">
+    No members found.
+  </div>
+</div>

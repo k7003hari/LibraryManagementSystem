@@ -1,59 +1,33 @@
 body {
-    background-color: #f2f4f8;
-  }
-   
-  .view-books-container {
-    max-width: 1000px;
-    margin: 40px auto;
-    margin-top: 200px;
-    padding: 20px;
-    background-color: white;
-    border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  }
-   
-  .table thead {
-    background-color: #0d6efd;
-    color: white;
-  }
-   
-  .table-hover tbody tr:hover {
-    background-color: #f1f1f1;
-  }
-   
-  .header-title {
-    font-size: 1.8rem;
-    font-weight: 600;
-    margin-bottom: 25px;
-    text-align: center;
-  }
-   .btn-custom {
-    background-color: #0d6efd;
-    margin-left: 450px;
-    margin-right: 450px;
-    color: white;
-    font-weight: 500;
-  }
-  /* Container adjustments */
+  background-color: #f2f4f8;
+}
+
 .container {
   padding-top: 40px;
   padding-bottom: 40px;
-  margin-top: 100px;
+  margin-top: 60px;
 }
- 
+
+/* Search Area */
+.search-area {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
 /* Book card styling */
 .card {
   border-radius: 15px;
-  transition: transform 0.3s, box-shadow 0.3s;
   background-color: #fefefe;
+  transition: transform 0.2s ease-in-out, box-shadow 0.3s;
 }
- 
+
 .card:hover {
-  transform: translateY(-5px);
+  transform: scale(1.03);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
- 
-/* Image styling */
+
 .card img {
   height: 200px;
   object-fit: cover;
@@ -61,51 +35,75 @@ body {
   margin: 0 auto;
   width: 90%;
 }
- 
-/* Book title */
-.card h3 {
+
+.card h4 {
   font-weight: 600;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: #007bff;
-  margin-bottom: 10px;
 }
- 
-/* Info text */
+
 .card p {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   margin-bottom: 6px;
   color: #333;
 }
- 
-/* Button spacing */
+
 .card .btn {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   padding: 6px 12px;
   border-radius: 8px;
-  transition: background-color 0.2s, color 0.2s;
+  transition: background-color 0.2s, color 0.2s, transform 0.2s;
 }
- 
-/* Success and danger hover effects */
+
+.card .btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
 .btn-outline-warning:hover {
   background-color: #ffc107;
   color: #fff;
 }
- 
+
 .btn-outline-danger:hover {
   background-color: #dc3545;
   color: #fff;
 }
- 
-/* Info message if no books */
+
+.btn-outline-success:hover {
+  background-color: #198754;
+  color: #fff;
+}
+
 .alert-info {
   font-size: 1rem;
   font-weight: 500;
   border-radius: 10px;
 }
+
 .btn-custom {
   background-color: #0d6efd;
-  margin-left: 570px;
-  margin-right: 570px;
   color: white;
   font-weight: 500;
+  padding: 8px 24px;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.btn-custom:hover {
+  background-color: #084298;
+}
+
+/* Add Book Card */
+.add-book-card {
+  border: 2px dashed #28a745;
+  background-color: #f9fff9;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 15px;
+}
+
+.add-book-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 16px rgba(40, 167, 69, 0.2);
+  background-color: #eaffea;
 }

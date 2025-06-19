@@ -6,18 +6,33 @@ import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'addbook',
-  imports: [NavbarComponent,RouterLink,FormsModule],
+  standalone: true,
+  imports: [NavbarComponent, RouterLink, FormsModule],
   templateUrl: './add-book.component.html',
   styleUrl: './add-book.component.css'
 })
 export class AddBookComponent {
-  constructor(private router:Router, private bookService:BookService){}
+  toastMessage: string | null = null;
 
-  validateAdd(form:NgForm){
-    this.bookService.add(form.value).subscribe(response=>console.log(response))
-    alert("Book Added Successfully")
-    this.router.navigate(["/book"])
+  constructor(private router: Router, private bookService: BookService) {}
 
+  validateAdd(form: NgForm) {
+    if (form.invalid) return;
+
+    this.bookService.add(form.value).subscribe({
+      next: (response) => {
+        console.log('✅ Book added:', response);
+        this.toastMessage = 'Book added successfully!';
+        setTimeout(() => {
+          this.toastMessage = null;
+          this.router.navigate(['/allBook']);
+        }, 3000);
+      },
+      error: (error) => {
+        console.error('❌ Error adding book:', error);
+        this.toastMessage = 'Failed to add book!';
+        setTimeout(() => (this.toastMessage = null), 3000);
+      }
+    });
   }
-
 }

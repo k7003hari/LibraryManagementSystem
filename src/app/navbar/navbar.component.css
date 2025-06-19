@@ -1,14 +1,4 @@
-/* .card {
-    transition: transform 0.2s ease;
-  }
-  .card:hover {
-    transform: scale(1.02);
-  }
-  .bg{
-    background-color: rgba(202, 152, 91, 0.667);
-  } */
-
-  /* Navbar styling */
+  Navbar styling
 .navbar-scroll {
   background: linear-gradient(135deg, #1266f1, #4f4f4f);
   border-radius: 10px;
@@ -48,4 +38,15 @@
 /* Body background */
 body {
   background-color: #eee;
+}
+.navbar-brand i {
+  font-size: 1.4rem;
+  color: white;
+}
+
+.navbar-brand:hover i {
+  color: #ffcc00;
+}
+.toast-container {
+  z-index: 9999;
 }

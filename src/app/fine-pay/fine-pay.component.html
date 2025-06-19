@@ -1,23 +1,54 @@
 <app-navbar></app-navbar>
-<div class="container " style="margin-top: 150px;">
-  <div class="card p-4 shadow">
-    <h3 class="mb-3">Pay Fine</h3>
- 
-    <div class="mb-3">
-      <label class="form-label">Member ID</label>
-      <input type="number" class="form-control" [(ngModel)]="memberId" required />
+
+<div class="container" style="margin-top: 130px; max-width: 600px;">
+  <div class="card shadow-lg p-4">
+    <h3 class="mb-4 text-success text-center">Pay Fine</h3>
+
+    <form (ngSubmit)="payFine()">
+      <div class="mb-3">
+        <label class="form-label">Member ID</label>
+        <input type="number" class="form-control" [(ngModel)]="memberId" name="memberId"
+          placeholder="Enter Member ID" required />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Fine ID</label>
+        <input type="number" class="form-control" [(ngModel)]="fineId" name="fineId"
+          placeholder="Enter Fine ID" required />
+      </div>
+
+      <div class="d-grid">
+        <button class="btn btn-success" type="submit">Pay Fine</button>
+      </div>
+    </form>
+
+    <div *ngIf="isLoading" class="text-center mt-3">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
     </div>
- 
-    <div class="mb-3">
-      <label class="form-label">Fine ID</label>
-      <input type="number" class="form-control" [(ngModel)]="fineId" required />  
-    </div>
- 
-    <button class="btn btn-success" (click)="payFine()">Pay Fine</button>
- 
-    <div *ngIf="message" class="alert alert-info mt-3">
+
+    <div *ngIf="message" class="alert alert-info mt-4 text-center">
       {{ message }}
     </div>
   </div>
 </div>
- 
+
+<!-- Fine List Section -->
+<div class="container mt-5" *ngIf="fineList.length > 0">
+  <h4 class="text-center mb-4">
+    {{ userRole === 'admin' ? 'All Fines (Admin View)' : 'My Fines' }}
+  </h4>
+
+  <div *ngFor="let fine of fineList" class="card mb-3 p-3 shadow-sm">
+    <ng-container *ngIf="userRole === 'admin'">
+      <p><strong>Member ID:</strong> {{ fine.memberId.memberId }}</p>
+      <p><strong>Name:</strong> {{ fine.memberId.name }}</p>
+      <p><strong>Email:</strong> {{ fine.memberId.email }}</p>
+    </ng-container>
+    <p><strong>Fine ID:</strong> {{ fine.fineId }}</p>
+    <p><strong>Amount:</strong> ₹{{ fine.amount }}</p>
+    <p><strong>Status:</strong> {{ fine.status }}</p>
+    <p><strong>Date:</strong> {{ fine.transactionDate }}</p>
+  </div>
+</div>

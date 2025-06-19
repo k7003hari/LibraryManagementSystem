@@ -19,6 +19,7 @@ export class MemberUpdateComponent implements OnInit {
     address: '',
     membershipStatus: ''
   };
+  toastMessage: string;
  
   constructor(
     private route: ActivatedRoute,
@@ -35,8 +36,9 @@ export class MemberUpdateComponent implements OnInit {
  
   updateMember(): void {
     this.memberService.updateMember(this.memberId, this.member).subscribe(() => {
-      alert('Member updated successfully!');
-      this.router.navigate(['/member-up-del']);
+      this.toastMessage = 'Book updated successfully!';
+      setTimeout(() => (this.toastMessage = null), 3000);
+      this.router.navigate(['/memberUpDel']);
     });
   }
 }

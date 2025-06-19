@@ -7,57 +7,53 @@ import { Observable } from 'rxjs';
 
 })
 export class BookService {
-private pathAdd = 'http://localhost:9090/books/addbook';
-private pathView = 'http://localhost:9090/books/getall';
-private pathUpdate = 'http://localhost:9090/books/update/';
-private pathDelete = 'http://localhost:9090/books/delete/';
-private pathId = 'http://localhost:9090/books/getById/';
-private pathTitle = 'http://localhost:9090/books/search/title/';
-private pathAuthor = 'http://localhost:9090/books/search/author/';
-private pathGenre = 'http://localhost:9090/books/search/genre/';
+  private pathAdd = 'http://localhost:9090/books/addbook';
+  private pathView = 'http://localhost:9090/books/getall';
+  private pathUpdate = 'http://localhost:9090/books/update/';
+  private pathDelete = 'http://localhost:9090/books/delete/';
+  private pathId = 'http://localhost:9090/books/getById/';
+  private pathTitle = 'http://localhost:9090/books/search/title/';
+  private pathAuthor = 'http://localhost:9090/books/search/author/';
+  private pathGenre = 'http://localhost:9090/books/search/genre/';
+  private pathBorrow = 'http://localhost:9090/borrowings/borrow'; // ("memberId": 3, "bookId": 2, "returnDate":"2025-06-03")
+  private pathReturn = 'http://localhost:9090/borrowings/return'; // ("memberId": 1, "bookId": 2)
+  
 
-  constructor(private client: HttpClient) {}
+  constructor(private client: HttpClient) { }
 
   public add(addBook: AddBook): Observable<string> {
     return this.client.post(this.pathAdd, addBook, { responseType: 'text' });
-      }
+  }
 
-      public view(): Observable<AllBook[]> {
-        return this.client.get<AllBook[]>(this.pathView);
-      }
+  public view(): Observable<AllBook[]> {
+    return this.client.get<AllBook[]>(this.pathView);
+  }
 
-      public delete(bookId: string): Observable<void> {
-        return this.client.delete<void>(this.pathDelete + bookId);
-      }
+  public delete(bookId: string): Observable<void> {
+    return this.client.delete<void>(this.pathDelete + bookId);
+  }
 
-      public getById(bookId: string): Observable<AllBook> {
-        return this.client.get<AllBook>(this.pathId + bookId);
-      }
+  public getById(bookId: string): Observable<AllBook> {
+    return this.client.get<AllBook>(this.pathId + bookId);
+  }
 
-      public update(bookId: string, book: AddBook): Observable<string> {
-        return this.client.put(this.pathUpdate + bookId, book, { responseType: 'text' });
-      }
+  public update(bookId: string, book: AddBook): Observable<string> {
+    return this.client.put(this.pathUpdate + bookId, book, { responseType: 'text' });
+  }
 
-      public searchByTitle(title: string): Observable<AllBook[]> {
-        return this.client.get<AllBook[]>(this.pathTitle + title);
-      }
+  public searchByTitle(title: string): Observable<AllBook[]> {
+    return this.client.get<AllBook[]>(this.pathTitle + title);
+  }
 
-      public searchByAuthor(author: string): Observable<AllBook[]> {
-        return this.client.get<AllBook[]>(this.pathAuthor + author);
-      }
+  public searchByAuthor(author: string): Observable<AllBook[]> {
+    return this.client.get<AllBook[]>(this.pathAuthor + author);
+  }
 
-      public searchByGenre(genre: string): Observable<AllBook[]> {
-        return this.client.get<AllBook[]>(this.pathGenre + genre);
-      }
+  public searchByGenre(genre: string): Observable<AllBook[]> {
+    return this.client.get<AllBook[]>(this.pathGenre + genre);
+  }
 
-
-      public borrowBook(bookId: string): Observable<string> {
-        const memberId = localStorage.getItem("memberId");
-        const body = { bookId, memberId };
-    return this.client.post('http://localhost:9090/borrowings/borrow', body, { responseType: 'text' });
-      }
-    }
-
+}
 export class AddBook {
   constructor(
     public title: string,
@@ -70,6 +66,8 @@ export class AddBook {
 }
 
 export class AllBook {
+  borrowedByMe: boolean;
+  returnDate: string;
   constructor(
     public bookId: string,
     public title: string,

@@ -1,40 +1,50 @@
 import { Component } from '@angular/core';
-import { BorrowService } from '../borrow.service';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { Router, RouterLink } from '@angular/router';
+import { BorrowService } from '../borrow.service';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-all-borrows',
-  imports: [NavbarComponent,FormsModule,CommonModule,RouterLink],
-  templateUrl: './all-borrows.component.html',
-  styleUrl: './all-borrows.component.css'
+  selector: 'app-borrow-book',
+  imports: [NavbarComponent,RouterLink, FormsModule],
+  templateUrl: './borrow-book.component.html',
+  styleUrl: './borrow-book.component.css'
 })
-
-export class ViewBorrowsComponent {
+export class BorrowBookComponent {
   memberId!: number;
-  borrowList: any[] = [];
+  bookId!: number;
+  returnDate!: string;
   message: string = '';
+  today: string = new Date().toISOString().split('T')[0]; 
  
-  constructor(private borrowService: BorrowService) {}
+  constructor(private borrowService: BorrowService, private router:Router) {}
  
-  fetchBorrows() {
-    if (!this.memberId) {
-      alert('Please enter Member ID');
+  borrow() {
+    if (!this.memberId || !this.bookId || !this.returnDate) {
+      alert('Please fill all fields.');
       return;
     }
  
-    this.borrowService.viewBorrowsByMember(this.memberId).subscribe({
-      next: (res) => {
-        this.borrowList = res;
-        this.message = this.borrowList.length > 0 ? '' : 'No borrow records found.';
-        console.log(res);
-      },
-      error: (err) => {
-        console.error(err);
-        this.message = 'Failed to fetch borrow records.';
-      }
-    });
+    this.borrowService.borrowBook(this.memberId, this.bookId, this.returnDate)
+      .subscribe({
+        next: (response) => {
+          this.message = 'Book borrowed successfully!';
+          console.log(response);
+          alert(this.message);
+          this.clearForm();
+        },
+        error: (err) => {
+          this.message = 'Failed to borrow book. Please try again.';
+          console.error(err);
+          alert(this.message);
+        }
+      });
+  }
+ 
+  clearForm() {
+    this.memberId = 0;
+    this.bookId = 0;
+    this.returnDate = '';
+    this.router.navigate(['/borrow'])
   }
 }

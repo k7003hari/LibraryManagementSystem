@@ -1,26 +1,33 @@
 <app-navbar></app-navbar>
-
-<div class="container " style="margin-top: 150px;">
-    <div class="card p-4 shadow-sm">
-      <h3 class="mb-3">Borrow Book</h3>
-      <form (ngSubmit)="borrow()">
-        <div class="mb-3">
-          <label for="memberId" class="form-label">Member ID</label>
-          <input type="number" id="memberId" class="form-control" [(ngModel)]="memberId" name="memberId" required min="1"/>
+ 
+<div class="container" style="margin-top: 120px;">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-lg p-4">
+        <h3 class="text-center mb-4 text-primary">Borrow a Book</h3>
+        <form (ngSubmit)="borrow()">
+          <div class="form-group mb-3">
+            <label for="memberId">Member ID</label>
+            <input type="number" class="form-control" id="memberId" name="memberId" [(ngModel)]="memberId" required min="1" placeholder="Enter your Member ID">
+          </div>
+ 
+          <div class="form-group mb-3">
+            <label for="bookId">Book ID</label>
+            <input type="number" class="form-control" id="bookId" name="bookId" [(ngModel)]="bookId" required min="1" placeholder="Enter the Book ID">
+          </div>
+ 
+          <div class="form-group mb-4">
+            <label for="returnDate">Expected Return Date</label>
+            <input type="date" class="form-control" id="returnDate" name="returnDate" [(ngModel)]="returnDate" [min]="today" required>
+          </div>
+ 
+          <button type="submit" class="btn btn-success w-100">Borrow</button>
+        </form>
+ 
+        <div *ngIf="message" class="alert mt-4" [ngClass]="{'alert-success': success, 'alert-danger': !success}">
+          {{ message }}
         </div>
-   
-        <div class="mb-3">
-          <label for="bookId" class="form-label">Book ID</label>
-          <input type="number" id="bookId" class="form-control" [(ngModel)]="bookId" name="bookId" required min="1"/>
-        </div>
-   
-        <div class="mb-3">
-          <label for="returnDate" class="form-label">Return Date</label>
-          <input type="date" id="returnDate" class="form-control"  [(ngModel)]="returnDate" name="returnDate" required  min="{{ today }}" />
-        </div>
-   
-        <button type="submit" class="btn btn-primary">Borrow</button>
-      </form>
-      <p class="mt-3 text-success" *ngIf="message">{{ message }}</p>
+      </div>
     </div>
   </div>
+</div>
