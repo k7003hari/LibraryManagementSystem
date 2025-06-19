@@ -21,7 +21,7 @@ export class MemberUpDelComponent implements OnInit {
   memberEmail: string = '';
   userRole: string = '';
   loggedInEmail: string = '';
-  totalFines: number = 28;
+  totalFines: number = 0; // Initialize total fines
 
   constructor(
     private memberService: MemberService,
@@ -157,19 +157,11 @@ export class MemberUpDelComponent implements OnInit {
     this.memberService.calculateFine(this.memberId).subscribe({
       next: (res) => {
         this.fineDetails = res;
-        // this.fineDetails.map((fine: any) => {})
-        this.totalFines = 28; // Reset total fines before calculation
+        this.totalFines = this.fineDetails?.amount||0; 
         console.log('✅ Fine details:', this.fineDetails);  
-      //   this.fineDetails.map((fine: any) => {
-      //     this.totalFines += fine.fineAmount; // Assuming fineAmount is the field for fine amount
-      //     fine.fineAmount = `₹${fine.fineAmount.toFixed(2)}`; // Format fine amount
-      //     fine.dueDate = new Date(fine.dueDate).toLocaleDateString(); // Format due date  
-      //     fine.fineId = fine.fineId || fine.id; // Ensure fineId is set
-      //     fine.status = fine.status || 'PENDING'; // Default status if not set
-      //     return fine;
-      // })
-        if (!this.fineDetails || this.fineDetails.amount === 0) {
+        if (!this.fineDetails || !this.fineDetails.amount|| this.fineDetails.amount === 0) {
           this.message = '🎉 You have no pending fine.';
+          this.fineDetails = null; // Reset fine details
           return;
         }
 
@@ -204,7 +196,7 @@ export class MemberUpDelComponent implements OnInit {
     this.message = '';
     this.error = '';
    
-    const fineId = this.fineDetails?.[0]?.fineId;
+    const fineId = this.fineDetails?.fineId;
    
     if (!fineId || !this.memberId) {
       this.error = '⚠️ Please calculate fine first.';
